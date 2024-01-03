@@ -1,28 +1,6 @@
 import React, {type ComponentType} from "react";
 import {InnerWrapperElement, ItemElement, WrapperElement} from "./elements";
-
-export type ModalProps<Props> = {
-    closeModal: () => void
-} & Props
-
-export type ModalDictionary = {
-    [key: string]: ComponentType<ModalProps<any>>
-}
-
-export type ClonedModalDictionary = {
-    [key: string]: React.ReactElement<ModalProps<any>>
-}
-
-export type ModalOptions = {
-    children: React.ReactNode
-    Modals?: ModalDictionary
-}
-
-export type ModalContextProps = {
-    openModal: <T extends ModalProps<any>>(name: string, modalProps?: Partial<T>) => number
-    closeAllModals: () => void
-    closeModal: (id: number) => void
-}
+import {ClonedModalDictionary, ModalContextProps, ModalOptions, ModalProps} from "./types";
 
 const defaultModalContextProps: ModalContextProps = {
     openModal: () => -1,

@@ -4,6 +4,7 @@
   "description": "the hassle-free solution for seamlessly integrating modals into your React applications. With a key focus on simplicity and flexibility, our Epic Modal library empowers you to effortlessly call modals programmatically, enhancing the user experience without unnecessary complications.",
   "source": "src/index.ts",
   "main": "dist/main.js",
+  "types": "dist/types.d.ts",
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build"
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/fendyk/react-epic-modal/tree/master#readme",
   "devDependencies": {
+    "@parcel/packager-ts": "^2.10.3",
+    "@parcel/transformer-typescript-types": "^2.10.3",
     "@types/react": "^18.2.46",
     "parcel": "^2.10.3",
     "typescript": "^5.3.3"
