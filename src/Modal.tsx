@@ -21,7 +21,7 @@ export const useModal = () => {
 }
 
 const ModalProvider: React.FC<ModalOptions> = (props: ModalOptions) => {
-    const {Modals} = props
+    const {Modals, isNative} = props
 
     const [idIndex, setIdIndex] = React.useState<number>(0)
     const [ClonedModals, setClonedModals] =
@@ -74,15 +74,19 @@ const ModalProvider: React.FC<ModalOptions> = (props: ModalOptions) => {
             {props.children}
             {Object.keys(ClonedModals).length > 0 &&
                 <WrapperElement
+                    isNative={isNative ?? false}
                     onClick={() => {
                         const entries = Object.entries(ClonedModals);
                         const [key, value] = entries[entries.length - 1];
                         closeModal(parseInt(key))
                     }}
                 >
-                    <InnerWrapperElement>
+                    <InnerWrapperElement isNative={isNative ?? false}>
                         {Object.keys(ClonedModals).map((value, index, array) => (
-                            <ItemElement key={index + 1}>
+                            <ItemElement
+                                key={index + 1}
+                                isNative={false}
+                            >
                                 {ClonedModals[value]}
                             </ItemElement>
                         ))}
