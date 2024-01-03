@@ -1,5 +1,5 @@
 import React, {type ComponentType} from "react";
-import {KeyboardAvoidingView, Platform, Pressable, View} from "react-native";
+import {InnerWrapperElement, ItemElement, WrapperElement} from "./elements";
 
 export type ModalProps<Props> = {
     closeModal: () => void
@@ -95,25 +95,21 @@ const ModalProvider: React.FC<ModalOptions> = (props: ModalOptions) => {
         <ModalContext.Provider value={{openModal, closeAllModals, closeModal}}>
             {props.children}
             {Object.keys(ClonedModals).length > 0 &&
-                <Pressable
-                    onPress={() => {
+                <WrapperElement
+                    onClick={() => {
                         const entries = Object.entries(ClonedModals);
                         const [key, value] = entries[entries.length - 1];
                         closeModal(parseInt(key))
                     }}
-                    className={"absolute w-full top-0 left-0 right-0 bottom-0 z-100"}
                 >
-                    <KeyboardAvoidingView
-                        behavior={Platform.OS === "ios" ? "padding" : "height"}
-                        style={{backgroundColor: "rgba(0,0,0,0.5)"}}
-                        className={"flex-1 flex-row justify-center items-end"}>
+                    <InnerWrapperElement>
                         {Object.keys(ClonedModals).map((value, index, array) => (
-                            <Pressable key={index + 1} className={"w-full h-full"}>
+                            <ItemElement key={index + 1}>
                                 {ClonedModals[value]}
-                            </Pressable>
+                            </ItemElement>
                         ))}
-                    </KeyboardAvoidingView>
-                </Pressable>
+                    </InnerWrapperElement>
+                </WrapperElement>
             }
         </ModalContext.Provider>
     )
